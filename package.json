@@ -1,0 +1,16 @@
+{
+  "name": "node-again",
+  "version": "1.0.0",
+  "description": "Complete E-commerse web-site with node-js and mongoDb",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
