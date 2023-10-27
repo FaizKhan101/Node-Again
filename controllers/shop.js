@@ -1,6 +1,6 @@
-const adminControlller = require("./admin")
+const Product = require("../models/product")
 
 exports.getProducts = (req, res, next) => {
-    console.log("shop.js", adminControlller.products);
-    res.render("shop", { pageTitle: "Shop", prods: adminControlller.products, path: "/" })
+    const products = Product.fetchAll()
+    res.render("shop", { pageTitle: "Shop", prods: products, path: "/" })
 }
