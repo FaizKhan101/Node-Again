@@ -20,7 +20,9 @@ class Product {
     return db.execute("SELECT * FROM products");
   }
 
-  static findById(id, cb) {}
+  static findById(id, cb) {
+    return db.execute("SELECT * FROM products WHERE products.id = ?", [id])
+  }
 
   static deleteById(id) {}
 }
