@@ -5,7 +5,7 @@ const app = express();
 const errorController = require("./controllers/error");
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
-const db = require("./util/database")
+const db = require("./util/database");
 
 app.set("view engine", "ejs");
 app.set("views", "views");
@@ -13,7 +13,7 @@ app.set("views", "views");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 
-db.execute("SELECT * FROM products")
+db.execute("SELECT * FROM products").then(result => {console.log(result[0])}).catch(err => {console.log(err)});
 
 app.use("/admin", adminRoutes);
 app.use(shopRoutes);
