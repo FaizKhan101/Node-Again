@@ -29,13 +29,17 @@ exports.postAddProduct = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
-  Product.fetchAll((products) => {
-    res.render("admin/products", {
-      path: "/admin/products",
-      pageTitle: "Admin Products",
-      prods: products,
+  Product.findAll()
+    .then((products) => {
+      res.render("admin/products", {
+        path: "/admin/products",
+        pageTitle: "Admin Products",
+        prods: products,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
     });
-  });
 };
 
 exports.getEditProduct = (req, res, next) => {
