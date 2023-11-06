@@ -1,9 +1,22 @@
-const { Sequelize } = require("sequelize");
+const mongoDb = require("mongodb")
 
+const MongoClient = mongoDb.MongoClient
 
-const sequelize = new Sequelize("node-complete", "root", "Test@123", {
-    dialect: "mysql",
-    host: "localhost"
-})
+let database;
 
-module.exports = sequelize
+const mongoConnect = async () => {
+    const client = await MongoClient.connect("mongodb://localhost:27017")
+    database = client.db("shop")
+}
+
+const getDb = () => {
+    if (!database) {
+    throw new Error("Could't connect to the database!")
+    }
+    return database
+}
+
+module.exports = {
+    mongoConnect: mongoConnect,
+    getDb: getDb
+}
