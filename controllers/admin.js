@@ -13,7 +13,14 @@ exports.postAddProduct = (req, res, next) => {
   const imageUrl = req.body.imageUrl;
   const price = req.body.price;
   const description = req.body.description;
-  const product = new Product(title, imageUrl, price, description);
+  const product = new Product(
+    title,
+    imageUrl,
+    price,
+    description,
+    null,
+    req.user._id
+  );
   product
     .save()
     .then((result) => {
@@ -23,20 +30,6 @@ exports.postAddProduct = (req, res, next) => {
     .catch((err) => {
       console.log(err);
     });
-  // req.user
-  //   .createProduct({
-  //     title: title,
-  //     imageUrl: imageUrl,
-  //     price: price,
-  //     description: description,
-  //   })
-  //   .then((result) => {
-  //     console.log("Product Created");
-  //     res.redirect("/");
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
 };
 
 exports.getProducts = (req, res, next) => {
