@@ -15,7 +15,7 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 
 app.use((req, res, next) => {
-  User.findById("6549249419f35e508a8185b1")
+  User.findById("654bbbabce973fc0b0f66e23")
     .then((user) => {
       req.user = new User(user.name, user.email, user.cart, user._id);
       next();
