@@ -191,9 +191,23 @@ form {
   cursor: pointer;
 }
 
+.danger {
+    border: 1px solid #e91616;
+    color: rgb(236, 15, 15);
+    background: white;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.danger:hover,
+.danger:active {
+  background-color: #f80f0f;
+  color: white;
+}
+
 .btn:hover,
 .btn:active {
-  background-color: #00695c;
+  background-color: #f10c0c;
   color: white;
 }
 

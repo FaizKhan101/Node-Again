@@ -53,10 +53,23 @@ class User {
             ...p,
             quantity: this.cart.items.find((i) => {
               return i.productId.toString() === p._id.toString();
-            }).quantity
+            }).quantity,
           };
         });
       });
+  }
+
+  deleteItemFromCart(productId) {
+    const updatedCartItems = this.cart.items.filter((item) => {
+      return item.productId.toString() !== productId;
+    });
+    return db
+      .getDb()
+      .collection("users")
+      .updateOne(
+        { _id: new ObjectId(this._id) },
+        { $set: { cart: { items: updatedCartItems } } }
+      );
   }
 
   static findById(id) {
