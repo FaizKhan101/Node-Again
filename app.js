@@ -5,7 +5,7 @@ const app = express();
 
 const errorController = require("./controllers/error");
 const adminRoutes = require("./routes/admin");
-// const shopRoutes = require("./routes/shop");
+const shopRoutes = require("./routes/shop");
 // const User = require("./models/user")
 
 app.set("view engine", "ejs");
@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: false }));
 // });
 
 app.use("/admin", adminRoutes);
-// app.use(shopRoutes);
+app.use(shopRoutes);
 
 app.use(errorController.get404);
 
