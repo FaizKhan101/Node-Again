@@ -33,7 +33,10 @@ exports.postAddProduct = (req, res, next) => {
 
 exports.getProducts = (req, res, next) => {
   Product.find()
+  // .select('title price -_id')
+  // .populate("userId", 'name email')
     .then((products) => {
+      console.log(products);
       res.render("admin/products", {
         path: "/admin/products",
         pageTitle: "Admin Products",
