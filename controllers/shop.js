@@ -107,10 +107,10 @@ exports.postOrder = (req, res, next) => {
       return order.save();
     })
     .then((result) => {
-      req.user.clearCart()
-      return
+      req.user.clearCart();
+      return;
     })
-    .then(result => {
+    .then((result) => {
       res.redirect("/orders");
     })
     .catch((err) => {
@@ -119,8 +119,7 @@ exports.postOrder = (req, res, next) => {
 };
 
 exports.getOrders = (req, res, next) => {
-  req.user
-    .getOrders()
+  Order.find({ "user.userId": req.user._id })
     .then((orders) => {
       console.log(orders);
       res.render("shop/orders", {
