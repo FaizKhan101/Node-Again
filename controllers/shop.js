@@ -4,9 +4,9 @@ const Order = require("../models/order");
 exports.getIndex = (req, res, next) => {
   Product.find()
     .then((products) => {
-      console.log(products);
       res.render("shop/index", {
         pageTitle: "Shop",
+        isAuthenticated: req.isLoggedIn,
         prods: products,
         path: "/",
       });
@@ -21,6 +21,7 @@ exports.getProducts = (req, res, next) => {
     .then((products) => {
       res.render("shop/product-list", {
         pageTitle: "Products",
+        isAuthenticated: req.isLoggedIn,
         prods: products,
         path: "/products",
       });
@@ -37,6 +38,7 @@ exports.getProduct = (req, res, next) => {
       res.render("shop/product-detail", {
         path: "/products",
         pageTitle: "Product Detail",
+        isAuthenticated: req.isLoggedIn,
         product: product,
       });
     })
@@ -53,6 +55,7 @@ exports.getCart = (req, res, next) => {
       const products = user.cart.items;
       res.render("shop/cart", {
         pageTitle: "Your Cart",
+        isAuthenticated: req.isLoggedIn,
         path: "/cart",
         products: products,
       });
@@ -124,6 +127,7 @@ exports.getOrders = (req, res, next) => {
       console.log(orders);
       res.render("shop/orders", {
         pageTitle: "Orders",
+        isAuthenticated: req.isLoggedIn,
         path: "/orders",
         orders: orders,
       });
