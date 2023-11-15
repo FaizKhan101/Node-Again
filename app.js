@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
+const MongoDbStore = require("connect-mongodb-session")(session);
 
 const app = express();
 
@@ -9,6 +10,11 @@ const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 const authRoutes = require("./routes/auth");
 const User = require("./models/user");
+
+const store = new MongoDbStore({
+  uri: "mongodb://localhost:27017/shop",
+  collection: "sessions"
+})
 
 app.set("view engine", "ejs");
 app.set("views", "views");
@@ -20,6 +26,7 @@ app.use(
     secret: "supersecret",
     resave: false,
     saveUninitialized: false,
+    store: store
   })
 );
 
