@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const session = require("express-session");
 
 const app = express();
 
@@ -14,6 +15,13 @@ app.set("views", "views");
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
+app.use(
+  session({
+    secret: "supersecret",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 app.use((req, res, next) => {
   User.findById("654effabb28832fb170fd2c0")
