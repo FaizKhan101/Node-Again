@@ -30,16 +30,16 @@ app.use(
   })
 );
 
-app.use((req, res, next) => {
-  User.findById("654effabb28832fb170fd2c0")
-    .then((user) => {
-      req.user = user;
-      next();
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+// app.use((req, res, next) => {
+//   User.findById("654effabb28832fb170fd2c0")
+//     .then((user) => {
+//       req.user = user;
+//       next();
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// });
 
 app.use("/admin", adminRoutes);
 app.use(shopRoutes);
@@ -50,18 +50,6 @@ app.use(errorController.get404);
 mongoose
   .connect("mongodb://localhost:27017/shop")
   .then((result) => {
-    User.findOne().then((user) => {
-      if (!user) {
-        const user = new User({
-          name: "Faiz",
-          email: "test@test.com",
-          cart: {
-            items: [],
-          },
-        });
-        return user.save();
-      }
-    });
     app.listen(3000, () => console.log("Server start at port 3000!"));
   })
   .catch((err) => {
