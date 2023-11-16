@@ -43,6 +43,11 @@
             >Login</a
           >
         </li>
+        <li class="main-header__item">
+          <a href="/signup" class="<%= path === '/signup' ? 'active' : '' %>"
+            >Signup</a
+          >
+        </li>
       <% } %>
       <% if (isAuthenticated) { %>
         <li class="main-header__item">
@@ -94,6 +99,11 @@
     <li class="mobile-nav__item">
       <a href="/login" class="<%= path === '/login' ? 'active' : '' %>"
         >Login</a
+      >
+    </li>
+    <li class="mobile-nav__item">
+      <a href="/signup" class="<%= path === '/signup' ? 'active' : '' %>"
+        >Signup</a
       >
     </li>
     <li class="main-header__item">

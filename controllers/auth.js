@@ -13,6 +13,14 @@ exports.postLogin = (req, res, next) => {
   res.redirect("/");
 };
 
+exports.getSignup = (req, res, next) => {
+  res.render("auth/signup", {
+    pageTitle: "Signup",
+    isAuthenticated: req.session.isLoggedIn,
+    path: "/signup",
+  });
+};
+
 exports.postLogout = (req, res, next) => {
   req.session.destroy((err) => {
     console.log(err);
